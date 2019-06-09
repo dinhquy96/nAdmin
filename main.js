@@ -46,6 +46,64 @@
         },2000);
         }   
     }
+      $('#tableCa').on('click', '.fa-trash', function (e) {
+                var selectedRow = $(this).closest('tr');
+                selectedRow.remove();
+                $("#success-alert3").show();
+            window.setTimeout(function (){
+              $("#success-alert3").hide();
+            },2000);
+            });
+
+
+      
+     function addCa(){
+        var d = new Date();
+       // alert(d);
+        //alert(row);
+          var ti = document.getElementById("titleCa").value;
+         var des = document.getElementById("descriptionCa").value;
+       
+       //var admin = $("input[name='drone']:checked").val();
+        //alert(admin);
+        if( ti != '' && des != '' ){
+            //addSession(nickname1);
+            //alert("OK");
+            $('#tableCa').prepend(
+            `<tr>
+      <td>`+ti+`</td>
+      <td>`+d+`</td>
+      <td></td>
+      <td></td>
+      <td>
+        <div class="btn-group">
+                         <button type="button" onclick="showedit()"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat"  > <i class="fa fa-edit"></i></button>  
+                          <a class="btn btn-danger" href="#" ><i class="fa fa-trash"></i></a> 
+        </div>
+      </td>
+    </tr>`
+            );
+
+            //alert(sessionStorage.getItem("yourName"));
+        //window.location= 'post.html#comments';
+        $("#success-alert").show();
+        window.setTimeout(function (){
+            $("#success-alert").hide();
+        },2000);
+        // document.getElementById("id").value = '';
+        // document.getElementById("title").value = '';
+        // document.getElementById("author").value = '';
+        // document.getElementById("category").value = '';
+        // document.getElementById("content").value = '';
+        // document.getElementById("date").value = '';
+        }
+        else{
+             $("#success-alert2").show();
+        window.setTimeout(function (){
+            $("#success-alert2").hide();
+        },2000);
+        }   
+    }
 
       function addUser(){
         var d = new Date();
