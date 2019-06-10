@@ -125,7 +125,7 @@
                       <td>`+ email +`</td>
                       <td>`+ admin +`</td>
                        <td>
-                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" ><i class="fa fa-eye"></i></button>
+                         
                          <button type="button" onclick="showedit()"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat"  > <i class="fa fa-edit"></i></button>  
                           <a class="btn btn-danger" href="#" ><i class="fa fa-trash"></i></a> </td>
                     </tr>`
@@ -143,6 +143,103 @@
         document.getElementById("category").value = '';
         document.getElementById("content").value = '';
         document.getElementById("date").value = '';
+        }
+        else{
+             $("#success-alert2").show();
+        window.setTimeout(function (){
+            $("#success-alert2").hide();
+        },2000);
+        }   
+    }
+    
+    function addFolder(){
+        var d = new Date();
+        //alert(d);
+        //alert(row);
+         var nameFolder = document.getElementById("nameFolder").value;
+        //nameFolder
+        // var files = sessionStorage.getItem('img');
+         //var day = d.getDate() + '/' +d.getMonth() +'/'+ d.getFullYear();
+         //alert(day);
+         
+       
+       //var admin = $("input[name='drone']:checked").val();
+        //alert(admin);
+        if( nameFolder != '' ){
+            //addSession(nickname1);
+            $('#folder').prepend(
+            ` <li><a href=""><i class="fa fa-folder"></i>`+nameFolder+`</a></li>`
+            );
+
+            //alert(sessionStorage.getItem("yourName"));
+        //window.location= 'post.html#comments';
+        $("#success-alert").show();
+        window.setTimeout(function (){
+            $("#success-alert").hide();
+        },2000);
+        // document.getElementById("id").value = '';
+        // document.getElementById("title").value = '';
+        // document.getElementById("author").value = '';
+        // document.getElementById("category").value = '';
+        // document.getElementById("content").value = '';
+        // document.getElementById("date").value = '';
+        }
+        else{
+             $("#success-alert2").show();
+        window.setTimeout(function (){
+            $("#success-alert2").hide();
+        },2000);
+        }   
+    }
+
+    function addFile(){
+        var d = new Date();
+        //alert(d);
+        //alert(row);
+         var files = sessionStorage.getItem('img');
+         var day = d.getDate() + '/' +d.getMonth() +'/'+ d.getFullYear();
+         //alert(day);
+         
+       
+       //var admin = $("input[name='drone']:checked").val();
+        //alert(admin);
+        if( files != '' ){
+            //addSession(nickname1);
+            $('#filebox').prepend(
+            `<div class="file-box">
+                            <div class="file">
+                              <a href="#">
+                                <span class="corner"></span>
+
+                                <div class="image">
+                                  <img alt="image" class="img-responsive" src="`+files+`">
+                                </div>
+                                <div class="file-name">
+                                  My feel.png
+                                  <br>
+                                  <small>Added:`+day+`</small>
+                                </div>
+                                &nbsp; &nbsp;
+                                <button type="button"  data-toggle="modal" data-target="#exampleModal22" data-whatever="@mdo"><i class="fa fa-eye"></i></button> &nbsp; &nbsp; &nbsp; &nbsp;
+                                <button type="button"  data-toggle="modal" data-target="#exampleModaledit" data-whatever="@fat"><i class="fa fa-edit"></i></button>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                <button type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fa fa-trash"></i></button>
+                              </a>
+                            </div>
+                          </div>`
+            );
+
+            //alert(sessionStorage.getItem("yourName"));
+        //window.location= 'post.html#comments';
+        $("#success-alert").show();
+        window.setTimeout(function (){
+            $("#success-alert").hide();
+        },2000);
+        // document.getElementById("id").value = '';
+        // document.getElementById("title").value = '';
+        // document.getElementById("author").value = '';
+        // document.getElementById("category").value = '';
+        // document.getElementById("content").value = '';
+        // document.getElementById("date").value = '';
         }
         else{
              $("#success-alert2").show();
@@ -278,25 +375,46 @@
     });
 
      $(function() {
-                $('#dtHorizontalExample').on('click', 'tbody tr', function(event) {
+                $('#tableView').on('click', 'tbody tr', function(event) {
+                   // document.getElementById("postForm").action= "admin.php?controller=product_researcher&act=edit";
+
+                $(this).addClass('highlight').siblings().removeClass('highlight');
+                var fullname = $(this).closest('.highlight').find('td:nth-child(1)').text();
+                var description = $(this).closest('.highlight').find('td:nth-child(4)').text();
+               
+               //alert(idProduct); 
+                document.getElementById("nameRole").value = fullname;
+                document.getElementById("description").value = description;
+                // document.getElementById("author1").value = author;
+                // document.getElementById("category1").value = category;
+                // document.getElementById("content1").value = content;
+                // document.getElementById("date1").value = date;
+
+                //$(this).closest('.highlight').find('td:nth-child(4)').val("ok");
+                                   
+      });
+    });
+
+     $(function() {
+                $('#tableUser').on('click', 'tbody tr', function(event) {
                    // document.getElementById("postForm").action= "admin.php?controller=product_researcher&act=edit";
 
                 $(this).addClass('highlight').siblings().removeClass('highlight');
                 var id = $(this).closest('.highlight').find('td:nth-child(1)').text();
-                var title = $(this).closest('.highlight').find('td:nth-child(4)').text();
-                var author = $(this).closest('.highlight').find('td:nth-child(2)').text();
-                var category = $(this).closest('.highlight').find('td:nth-child(3)').text();
-                var content = $(this).closest('.highlight').find('td:nth-child(5)').text();
-                var date = $(this).closest('.highlight').find('td:nth-child(6)').text();
+                var fullname = $(this).closest('.highlight').find('td:nth-child(2)').text();
+                var avatar = $(this).closest('.highlight').find('td:nth-child(3)').attr('src');
+                var date = $(this).closest('.highlight').find('td:nth-child(4)').text();
+                var email = $(this).closest('.highlight').find('td:nth-child(5)').text();
+                var role = $(this).closest('.highlight').find('td:nth-child(6)').text();
                //alert(idProduct); 
-                document.getElementById("id1").value = id;
-                document.getElementById("title1").value = title;
-                document.getElementById("author1").value = author;
-                document.getElementById("category1").value = category;
-                document.getElementById("content1").value = content;
-                document.getElementById("date1").value = date;
+                document.getElementById("id").value = id;
+                document.getElementById("email").value = email;
+                document.getElementById("fullname").value = fullname;
+                document.getElementById("date").value = date;
+                //document.getElementById("content1").value = content;
+                //document.getElementById("date1").value = date;
 
-                //$(this).closest('.highlight').find('td:nth-child(4)').val("ok");
+                ////$(this).closest('.highlight').find('td:nth-child(4)').val("ok");
                                    
       });
     });
@@ -350,11 +468,11 @@
       $("#success-alert2").hide();
       $("#success-alert3").hide();
       //alert(email);
-   //   var email = sessionStorage.getItem("email");
+      var email = sessionStorage.getItem("email");
       //alert(email);
       if(email == null )
       {
-   //     window.location = 'https://hanu98.github.io/Admin/';
+        window.location = 'https://hanu98.github.io/Admin/';
       }
       // $("#myWish").click(function showAlert(){
       //  $("#success-alert").alert();
@@ -362,6 +480,23 @@
     });
 
      $('#table').on('click', '.fa-trash', function (e) {
+                var selectedRow = $(this).closest('tr');
+                selectedRow.remove();
+                $("#success-alert3").show();
+            window.setTimeout(function (){
+              $("#success-alert3").hide();
+            },2000);
+            });
+      $('#tableView').on('click', '.fa-trash', function (e) {
+                var selectedRow = $(this).closest('tr');
+                selectedRow.remove();
+                $("#success-alert3").show();
+            window.setTimeout(function (){
+              $("#success-alert3").hide();
+            },2000);
+            });
+
+       $('#filebox').on('click', '.fa-trash', function (e) {
                 var selectedRow = $(this).closest('tr');
                 selectedRow.remove();
                 $("#success-alert3").show();
@@ -383,6 +518,13 @@
      function logout(){
   sessionStorage.removeItem("email");
   window.location = 'https://hanu98.github.io/Admin/';
+ }
+
+  function save(){
+  $("#success-alert").show();
+        window.setTimeout(function (){
+            $("#success-alert").hide();
+        },2000);
  }
 
 
